@@ -67,10 +67,7 @@ if(WIN32)
   add_definitions(/wd4099 /wd4146 /wd4267 /wd4305 /wd4307)
   add_definitions(/wd4715 /wd4722 /wd4723 /wd4838 /wd4309 /wd4334)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MP")
-  if (CMAKE_BUILD_TYPE)
-	add_definitions(-D_ITERATOR_DEBUG_LEVEL=0)
-	add_definitions(-DNDEBUG /O2)  # Equivalent of -c opt in Bazel.
-  endif()
+  set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /DTENSORFLOW_USE_EIGEN_THREADPOOL /D_ITERATOR_DEBUG_LEVEL=0 /DNDEBUG /O2")
 endif()
 
 if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
