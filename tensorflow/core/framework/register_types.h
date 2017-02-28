@@ -58,7 +58,11 @@ limitations under the License.
 // Note: macros are defined in same order as types in types.proto, for
 // readability.
 #define TF_CALL_float(m) m(float)
+#if defined(_WINDOWS) && !defined(GOOGLE_CUDA) && !defined(__AVX__) && !defined(__AVX2__) // Not supported on Eigen for SSE
+#define TF_CALL_double(m)
+#else
 #define TF_CALL_double(m) m(double)
+#endif
 #define TF_CALL_int32(m) m(::tensorflow::int32)
 #define TF_CALL_uint8(m) m(::tensorflow::uint8)
 #define TF_CALL_int16(m) m(::tensorflow::int16)
