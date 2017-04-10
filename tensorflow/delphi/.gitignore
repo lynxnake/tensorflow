@@ -1,0 +1,14 @@
+Tensorflow.pas
+Tensorflow_wrap.cxx
+
+__recovery/
+__history/
+Win32/
+
+*.~*
+*.local
+*.identcache
+*.stat
+*.dcu
+*.dsk
+*.tvsconfig

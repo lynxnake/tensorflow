@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{A19D3D89-9D95-446F-8EB6-D92DC67BE318}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="TensorflowTest.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="DLL.cbproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="TensorflowTest">
+        <MSBuild Projects="TensorflowTest.dproj"/>
+    </Target>
+    <Target Name="TensorflowTest:Clean">
+        <MSBuild Projects="TensorflowTest.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TensorflowTest:Make">
+        <MSBuild Projects="TensorflowTest.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="DLL">
+        <MSBuild Projects="DLL.cbproj"/>
+    </Target>
+    <Target Name="DLL:Clean">
+        <MSBuild Projects="DLL.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DLL:Make">
+        <MSBuild Projects="DLL.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="TensorflowTest;DLL"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="TensorflowTest:Clean;DLL:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="TensorflowTest:Make;DLL:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
